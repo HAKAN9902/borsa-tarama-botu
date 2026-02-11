@@ -27,8 +27,7 @@ jobs:
         with:
           name: last-results
           path: .
-          # `if-no-files-found: ignore` is not directly supported by download-artifact@v4 for initial runs
-          # but the script handles the file not existing. This step will just not find it initially.
+        continue-on-error: true # Allow the workflow to proceed even if artifact is not found
 
       - name: Run Borsa Taraması Script
         env:
