@@ -9,17 +9,6 @@ jobs:
   run-scanner:
     runs-on: ubuntu-latest
 
-    steps:name: Borsa Taraması
-
-on:
-  schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:
-
-jobs:
-  run-scanner:
-    runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -32,6 +21,14 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install tradingview-screener pandas requests
+
+      - name: Download previous last_results.csv (if exists)
+        uses: actions/download-artifact@v4
+        with:
+          name: last-results
+          path: .
+          # `if-no-files-found: ignore` is not directly supported by download-artifact@v4 for initial runs
+          # but the script handles the file not existing. This step will just not find it initially.
 
       - name: Run Borsa Taraması Script
         env:
@@ -46,9 +43,3 @@ jobs:
           name: last-results
           path: last_results.csv
           if-no-files-found: ignore # Do not fail if last_results.csv is not created yet
-
-      - name: Download previous last_results.csv (if exists)
-        uses: actions/download-artifact@v4
-        with:
-          name: last-results
-          path: .
