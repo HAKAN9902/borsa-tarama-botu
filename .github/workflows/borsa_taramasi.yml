@@ -27,7 +27,11 @@ jobs:
         with:
           name: last-results
           path: .
-        continue-on-error: true # Allow the workflow to proceed even if artifact is not found
+        continue-on-error: true # Artefakt bulunamazsa bile workflow'un devam etmesini sağlar
+
+      - name: Ensure last_results.csv exists
+        run: |
+          touch last_results.csv
 
       - name: Run Borsa Taraması Script
         env:
@@ -41,4 +45,4 @@ jobs:
         with:
           name: last-results
           path: last_results.csv
-          if-no-files-found: ignore # Do not fail if last_results.csv is not created yet
+          if-no-files-found: ignore # last_results.csv oluşturulmamışsa bile hata vermezno-files-found: ignore # Do not fail if last_results.csv is not created yet
