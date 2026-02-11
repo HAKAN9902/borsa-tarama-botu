@@ -1,0 +1,13 @@
+ame: Borsa Taraması
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run-scanner:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Bu kısım sonraki adımda doldurulacak
