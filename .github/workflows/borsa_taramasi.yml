@@ -45,4 +45,4 @@ jobs:
         with:
           name: last-results
           path: last_results.csv
-          if-no-files-found: ignore # last_results.csv oluşturulmamışsa bile hata vermezno-files-found: ignore # Do not fail if last_results.csv is not created yet
+          if-no-files-found: ignore # last_results.csv oluşturulmamışsa bile hata vermez
